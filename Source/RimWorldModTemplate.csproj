@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <AssemblyName>RimWorldModTemplate</AssemblyName>
+    <RootNamespace>RimWorldModTemplate</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>..\Assemblies\</OutputPath>
+
+    <GameDir Condition="'$(GameDir)' == ''">$(RIMWORLD_DIR)</GameDir>
+    <HarmonyDll Condition="'$(HarmonyDll)' == ''">$(HARMONY_DLL)</HarmonyDll>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(GameDir)' == ''">
+    <GameDir>Y:\SteamLibrary\steamapps\common\RimWorld</GameDir>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(HarmonyDll)' == ''">
+    <HarmonyDll>Y:\SteamLibrary\steamapps\workshop\content\294100\2009466977\1.7\Assemblies\0Harmony.dll</HarmonyDll>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>$(HarmonyDll)</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(GameDir)\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="ValidateBuildInputs" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(HarmonyDll)')" Text="0Harmony.dll not found: $(HarmonyDll)" />
+    <Error Condition="!Exists('$(GameDir)\Assembly-CSharp.dll')" Text="Assembly-CSharp.dll not found: $(GameDir)\Assembly-CSharp.dll" />
+  </Target>
+</Project>
