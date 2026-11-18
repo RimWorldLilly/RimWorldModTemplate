@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(HarmonyDll)' == ''">
-    <HarmonyDll>Y:\SteamLibrary\steamapps\workshop\content\294100\2009466977\1.7\Assemblies\0Harmony.dll</HarmonyDll>
+    <HarmonyDll>Y:\SteamLibrary\steamapps\workshop\content\294100\2009463077\1.7\Assemblies\0Harmony.dll</HarmonyDll>
   </PropertyGroup>
 
   <ItemGroup>
